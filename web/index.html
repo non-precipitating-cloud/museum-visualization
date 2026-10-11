@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中国博物馆文化资源与公共文化服务可视化大屏</title>
+<link rel="stylesheet" href="css/theme.css">
+<style>
+  /* ==========================================================================
+     首页布局：三栏结构
+     --------------------------------------------------------------------------
+     为什么用三栏而不是「上下两行」？
+       中国地图的包围盒宽高比约为 0.92（近乎正方）。ECharts 的 map 系列会把
+       地图拉伸填满给定的矩形，若把它塞进 1222×274 这样的扁长容器，地图会被
+       压变形，两侧还会留出大片空白。
+       三栏结构让地图拿到一块近乎正方的区域（约 781×849），既不变形、
+       也真正成为面积最大的第一主视觉；左右两栏的图表也各自获得合理的长宽比。
+     ========================================================================== */
+  #stage { display: flex; flex-direction: column; }
+
+  .main-grid {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: grid;
+    /* 一主多辅：中间是主视觉（地图），面积约占 48%；左右两栏是辅助信息。
+       原来的 1fr / 1.42fr / 1fr 让地图只比两侧宽四成，六个面板视觉权重接近，
+       读者第一眼不知道该看哪里。放大到 1.85fr 后主次立刻分明。 */
+    grid-template-columns: 1fr 1.85fr 1fr;
+    /* 右栏上（四象限）比下（国际比较）略高一些：散点比条形图更吃纵向空间 */
+    grid-template-rows: 1.14fr 1fr;
+    gap: var(--gap);
+  }
+  #panel-trend    { grid-column: 1; grid-row: 1; }
+  #panel-service  { grid-column: 1; grid-row: 2; }
+  #panel-map      { grid-column: 2; grid-row: 1 / 3; }   /* 地图跨两行 = 第一主视觉 */
+  #panel-quadrant { grid-column: 3; grid-row: 1; }
+  #panel-intl     { grid-column: 3; grid-row: 2; }
+
+  /* 发展趋势：2×2 小型趋势图 */
+  .spark-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 2px;
+    height: 100%;
+  }
+  .spark { position: relative; min-width: 0; min-height: 0; }
+  .spark .spark-cap {
+    position: absolute; left: 8px; top: 3px; z-index: 2;
+    font-size: 11px; color: var(--ink-secondary); letter-spacing: .3px;
+    pointer-events: none;
+  }
+  .spark .spark-val {
+    position: absolute; right: 8px; top: 2px; z-index: 2;
+    font-family: var(--font-num); font-size: 13px; font-weight: 700;
+    color: var(--ink-primary); font-variant-numeric: tabular-nums;
+    pointer-events: none;
+  }
+
+  /* 四象限：图 + 洞察 上下排（面板变窄后左右排会挤） */
+  .quad-split {
+    display: grid;
+    grid-template-rows: 1.62fr 1fr;   /* 散点 : 洞察栏 —— 两个区域都随屏幕高度弹性伸缩 */
+    height: 100%;
+    min-height: 0;
+  }
+  .quad-side {
+    border-top: var(--hairline) solid var(--border);
+    padding: 6px 11px 5px;
+    overflow-y: auto;            /* 屏幕矮、条目多时滚动，不再溢出压住图表 */
+    min-height: 0;
+  }
+  .quad-side .legend-chips { margin-bottom: 6px; }
+  .quad-side h4 {
+    margin: 0 0 5px; font-size: 12px; color: var(--ink-secondary);
+    letter-spacing: .6px; font-weight: 600;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .quad-side h4::before {
+    content: ""; width: 3px; height: 11px; border-radius: 2px; background: var(--accent);
+  }
+  .quad-side .insight-item { font-size: 11.5px; line-height: 1.5; }
+
+  /* 空状态 */
+  .nodata-hint {
+    display: grid; place-items: center; height: 100%;
+    color: var(--ink-muted); font-size: 12.5px; text-align: center; line-height: 1.9;
+  }
+</style>
+</head>
+<body>
+
+<div id="stage-wrap">
+  <div id="stage">
+
+    <!-- ============================ 页头 ============================ -->
+    <header class="app-header">
+      <div class="title-block">
+        <h1 class="app-title">中国博物馆文化资源与公共文化服务可视化大屏</h1>
+        <p class="app-subtitle">馆藏规模 · 空间分布 · 文化价值 · 公共文化服务 · 国际比较</p>
+      </div>
+
+      <nav class="main-nav">
+        <span class="nav-link active">综合大屏</span>
+        <a class="nav-link" href="pages/trend.html">发展趋势</a>
+        <a class="nav-link" href="pages/space.html">空间分布</a>
+        <a class="nav-link" href="pages/region.html">区域结构</a>
+        <a class="nav-link" href="pages/collection.html">馆藏与价值</a>
+        <a class="nav-link" href="pages/service.html">公共文化服务</a>
+        <a class="nav-link" href="pages/international.html">国际比较</a>
+        <a class="nav-link" href="pages/data.html">数据说明</a>
+      </nav>
+
+      <!-- 页头不再放「数据年份 / 当前范围」角标：
+           本大屏各面板用的年份并不相同（KPI 是 2024、地图与四象限是 2022、
+           国际比较是 2019），在页头挂一个全局年份会直接误导。
+           改为每个面板在自己的标题栏里标注口径与年份，就近阅读。 -->
+    </header>
+
+    <!-- ============================ KPI ============================ -->
+    <section class="kpi-row" id="kpi-row"></section>
+
+    <!-- ============================ 主网格（三栏） ============================ -->
+    <div class="main-grid">
+
+      <!-- ---------- 左栏上：全国发展趋势 ---------- -->
+      <section class="panel" id="panel-trend">
+        <div class="panel-head">
+          <h3 class="panel-title">全国发展趋势
+            <span class="panel-question">发展到了什么规模？</span>
+          </h3>
+          <div class="controls">
+            <select class="control-select" id="trend-caliber"></select>
+            <!-- 趋势图用的年份跨度与其他面板不同，就近标注 -->
+            <span class="note" id="trend-span">—</span>
+          </div>
+        </div>
+        <div class="panel-body flush">
+          <div class="spark-grid">
+            <div class="spark"><span class="spark-cap">博物馆数量</span><span class="spark-val" id="sp-museum"></span><div id="chart-sp-museum" class="chart"></div></div>
+            <div class="spark"><span class="spark-cap">馆藏文物</span><span class="spark-val" id="sp-collection"></span><div id="chart-sp-collection" class="chart"></div></div>
+            <div class="spark"><span class="spark-cap">参观人次</span><span class="spark-val" id="sp-visitors"></span><div id="chart-sp-visitors" class="chart"></div></div>
+            <div class="spark"><span class="spark-cap">陈列展览</span><span class="spark-val" id="sp-exhibition"></span><div id="chart-sp-exhibition" class="chart"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ---------- 左栏下：公共文化服务 ---------- -->
+      <section class="panel" id="panel-service">
+        <div class="panel-head">
+          <h3 class="panel-title">公共文化服务
+            <span class="panel-question">资源是否转化为服务？</span>
+          </h3>
+          <div class="controls"><span class="note" id="service-scope">全国</span></div>
+        </div>
+        <div class="panel-body flush"><div id="chart-service" class="chart"></div></div>
+      </section>
+
+      <!-- ---------- 中栏：中国地图（第一主视觉） ---------- -->
+      <section class="panel primary" id="panel-map">
+        <div class="panel-head">
+          <h3 class="panel-title">中国博物馆资源空间分布
+            <span class="panel-question" id="map-question">博物馆资源主要分布在哪里？</span>
+          </h3>
+          <div class="controls">
+            <!-- 选中范围只属于这张地图：点击省份只在图上高亮并显示该省数值，
+                 不会改变其他面板。原先挂在页头的全局角标会让人误以为整屏都切了范围。 -->
+            <span class="note" id="map-scope">—</span>
+            <button class="ghost-btn" id="btn-reset-province" title="回到全国视图">全国</button>
+          </div>
+        </div>
+        <div class="panel-head" style="border-bottom:1px solid var(--border);padding-top:6px;padding-bottom:7px">
+          <div class="tabs" id="map-metric-tabs" style="flex-wrap:wrap"></div>
+        </div>
+        <div class="panel-body flush"><div id="chart-map" class="chart"></div></div>
+      </section>
+
+      <!-- ---------- 右栏上：核心四象限 ---------- -->
+      <section class="panel" id="panel-quadrant">
+        <!-- 两行表头分工：第一行放标题 + 区域筛选，第二行放 X/Y 指标选择。
+             这样在窄面板里两者都不会把标题挤到换行。 -->
+        <div class="panel-head" style="padding-bottom:6px">
+          <h3 class="panel-title">资源结构四象限</h3>
+          <div class="legend-chips" id="quad-region-chips"></div>
+        </div>
+        <div class="panel-head" style="padding-top:5px;padding-bottom:6px">
+          <div class="controls" style="width:100%">
+            <span class="note">横轴</span>
+            <select class="control-select" id="quad-x"></select>
+            <span class="note">纵轴</span>
+            <select class="control-select" id="quad-y"></select>
+            <span class="note" id="quad-year" style="margin-left:auto"></span>
+          </div>
+        </div>
+        <div class="panel-body flush">
+          <div class="quad-split">
+            <div id="chart-quadrant" class="chart"></div>
+            <aside class="quad-side">
+              <h4>数据洞察（由程序根据真实数据计算）</h4>
+              <div class="insight" id="quad-insight"></div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- ---------- 右栏下：国际比较 ---------- -->
+      <section class="panel" id="panel-intl">
+        <div class="panel-head">
+          <h3 class="panel-title">国际比较
+            <span class="panel-question">中国在世界什么位置？</span>
+          </h3>
+          <div class="controls"><span class="note" id="intl-note"></span></div>
+        </div>
+        <div class="panel-body flush"><div id="chart-intl" class="chart"></div></div>
+      </section>
+
+    </div><!-- /.main-grid -->
+  </div><!-- /#stage -->
+</div><!-- /#stage-wrap -->
+
+<!-- ============================ 脚本 ============================ -->
+<!-- 数据由 scripts/build_web_data.py 从 data/processed/ 生成，供 file:// 直接加载 -->
+<script src="assets/echarts.min.js"></script>
+<script src="assets/geo/china.js"></script>
+<script src="data/museum-data.js"></script>
+<script src="js/core.js"></script>
+<script src="js/home.js"></script>
+
+</body>
+</html>

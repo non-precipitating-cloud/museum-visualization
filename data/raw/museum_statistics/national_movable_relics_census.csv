@@ -1,0 +1,42 @@
+# ============================================================================
+# 数据集 CN_MOVABLE_RELIC_CENSUS_04
+# 名称：第一次全国可移动文物普查 结果（全国 + 可获取的分省数据）
+# 说明：本文件为**原始数据转录**，数值来自下列官方公报及其公开转载，未经任何加工。
+#
+# 口径（务必注意，与"博物馆珍贵文物"不同）：
+#   普查对象 = 我国境内（不含港澳台）各级国家机关、事业单位、国有企业/国有控股企业、
+#             军队武警等**国有单位**收藏保管的可移动文物。
+#   统计时点 = 2016 年 10 月 31 日。
+#   该口径**包含**档案馆、图书馆、宗教场所、国企等非博物馆收藏单位，
+#   因此**大于**"博物馆馆藏"口径，两者**不可混用**。
+#
+# 表结构：本文件为长表（long format）
+#   scope      : national / province
+#   area       : 全国 或 省份名称
+#   metric     : 指标代码
+#   value      : 数值
+#   unit       : 单位
+#   share_pct  : 占比（来源给出时填写）
+#   source_id  : 来源 ID
+# ============================================================================
+scope,area,metric,value,unit,share_pct,source_id
+national,全国,movable_relics_total,108154907,件/套,,SRC_CENSUS_2017
+national,全国,movable_relics_full_info,26610907,件/套,,SRC_CENSUS_2017
+national,全国,movable_relics_actual_count,64073178,件,,SRC_CENSUS_2017
+national,全国,archives_paper_files,81544000,卷/件,,SRC_CENSUS_2017
+national,全国,precious_relics,3856268,件,6.02,SRC_CENSUS_2017
+national,全国,fine_relics_grade1,218911,件,,SRC_CENSUS_2017
+national,全国,fine_relics_grade2,551192,件,,SRC_CENSUS_2017
+national,全国,fine_relics_grade3,3086165,件,,SRC_CENSUS_2017
+national,全国,general_relics,24353746,件,38.01,SRC_CENSUS_2017
+national,全国,ungraded_relics,35863164,件,55.97,SRC_CENSUS_2017
+national,全国,newly_identified,7084149,件/套,,SRC_CENSUS_2017
+province,北京,movable_relics_total,11615758,件,18.13,SRC_CENSUS_2017
+province,陕西,movable_relics_total,7748750,件,12.09,SRC_CENSUS_2017
+province,山东,movable_relics_total,5580463,件,8.71,SRC_CENSUS_2017
+province,河南,movable_relics_total,4783457,件,7.47,SRC_CENSUS_2017
+province,山西,movable_relics_total,3220550,件,5.03,SRC_CENSUS_2017
+aggregate,五省合计,movable_relics_total,32948978,件,51.42,SRC_CENSUS_2017
+# 以下为分省珍贵文物，仅个别省份单独公布，**未形成全国统一口径的分省序列**，
+# 故不用于任何分省图表，仅作为个案例证记录。
+province,山西,precious_relics,59219,件(套),,SRC_SX_WWJ_2021

@@ -1,0 +1,66 @@
+[
+  {
+    "id": "museums",
+    "label": "备案博物馆数量",
+    "unit": "家",
+    "value": 7046.0,
+    "year": 2024,
+    "caliber": "国家文物局备案博物馆口径",
+    "color": "#3987e5",
+    "yoy": {
+      "pct": 3.1172252304990486,
+      "base_year": 2023
+    },
+    "source_ids": "SRC_NCHA_2024"
+  },
+  {
+    "id": "collections",
+    "label": "博物馆文物藏品",
+    "unit": "万件(套)",
+    "value": 4691.61,
+    "year": 2022,
+    "caliber": "文化和旅游部公报·博物馆口径",
+    "color": "#199e70",
+    "yoy": null,
+    "source_ids": "SRC_MCT_2022"
+  },
+  {
+    "id": "precious",
+    "label": "珍贵文物",
+    "unit": "万件",
+    "value": 385.6268,
+    "year": 2016,
+    "caliber": "第一次全国可移动文物普查·国有单位口径",
+    "color": "#c98500",
+    "yoy": null,
+    "source_ids": "SRC_CENSUS_2017"
+  },
+  {
+    "id": "visitors",
+    "label": "博物馆参观人次",
+    "unit": "亿人次",
+    "value": 14.9,
+    "year": 2024,
+    "caliber": "国家文物局博物馆口径",
+    "color": "#c98500",
+    "yoy": {
+      "pct": 15.503875968992247,
+      "base_year": 2023
+    },
+    "source_ids": "SRC_NCHA_2024"
+  },
+  {
+    "id": "exhibitions",
+    "label": "举办陈列展览",
+    "unit": "万个",
+    "value": 4.3,
+    "year": 2024,
+    "caliber": "国家文物局博物馆口径",
+    "color": "#e66767",
+    "yoy": {
+      "pct": 7.499999999999996,
+      "base_year": 2023
+    },
+    "source_ids": "SRC_NCHA_2024"
+  }
+]

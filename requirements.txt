@@ -1,0 +1,10 @@
+# 《中国博物馆文化资源与公共文化服务的多维可视化分析》
+# 依赖：仅用于数据处理、指标计算与审计；前端可视化使用 ECharts（浏览器端，无需 Python 服务）
+#
+# 安装：
+#   pip install -r requirements.txt
+
+pandas>=2.0
+numpy>=1.24
+openpyxl>=3.1      # 生成 data_dictionary.xlsx
+requests>=2.31     # 备用的来源页面抓取方式（默认使用 curl）

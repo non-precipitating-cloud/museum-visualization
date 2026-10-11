@@ -1,0 +1,36 @@
+{
+  "province_rows": 93,
+  "kpi_count": 5,
+  "datasets": [
+    {
+      "file": "national_yearly.csv",
+      "rows": 22,
+      "cols": 12
+    },
+    {
+      "file": "province_year.csv",
+      "rows": 93,
+      "cols": 17
+    },
+    {
+      "file": "census_relics.csv",
+      "rows": 18,
+      "cols": 7
+    },
+    {
+      "file": "international_country.csv",
+      "rows": 18,
+      "cols": 10
+    },
+    {
+      "file": "museum_cases.csv",
+      "rows": 20,
+      "cols": 9
+    },
+    {
+      "file": "museum_cases_official.csv",
+      "rows": 16,
+      "cols": 10
+    }
+  ]
+}

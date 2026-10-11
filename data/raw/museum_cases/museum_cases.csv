@@ -1,0 +1,37 @@
+# ============================================================================
+# 数据集 INTL_MUSEUM_CASES_07
+# 名称：世界代表性博物馆年度参观人次
+# 来源：TEA/AECOM《Theme Index and Museum Index 2023》官方报告 PDF
+#       该榜由同一机构、同一方法、同一年度编制，**可横向比较**（这一点与
+#       国家层面的博物馆数量统计不同）。
+#
+# 口径：annual_visitors_wan = 该馆 2023 年参观人次（万人次），
+#       由报告中的千人次数值换算（×0.1）。
+# 报告同时给出：2023 年全球前 20 博物馆合计 99,763 千人次（≈9,976 万人次），
+#              2022 年为 57,130 千人次，同比 +65.9%，恢复至 2019 年的 94.6%。
+#
+# 缺失：collection_count / building_area_m2 **全部未获取到**，
+#       本项目**不填任何估算值**。
+# 单位：万人次
+# ============================================================================
+museum,museum_cn,country,year,annual_visitors_wan,collection_count,building_area_m2,rank_2023,source_id
+LOUVRE,卢浮宫,法国,2023,886.0,,,1,SRC_TEA_2023
+VATICAN MUSEUMS,梵蒂冈博物馆,梵蒂冈,2023,676.5,,,2,SRC_TEA_2023
+NATIONAL MUSEUM OF CHINA,中国国家博物馆,中国,2023,675.7,,,3,SRC_TEA_2023
+BRITISH MUSEUM,大英博物馆,英国,2023,582.1,,,4,SRC_TEA_2023
+NATURAL HISTORY MUSEUM,伦敦自然史博物馆,英国,2023,568.9,,,5,SRC_TEA_2023
+THE METROPOLITAN MUSEUM OF ART,大都会艺术博物馆,美国,2023,536.4,,,6,SRC_TEA_2023
+CHINA SCIENCE TECHNOLOGY MUSEUM,中国科学技术馆,中国,2023,531.5,,,7,SRC_TEA_2023
+NANJING MUSEUM,南京博物院,中国,2023,500.7,,,8,SRC_TEA_2023
+AMERICAN MUSEUM OF NATURAL HISTORY,美国自然史博物馆,美国,2023,500.0,,,9,SRC_TEA_2023
+SUZHOU MUSEUM,苏州博物馆,中国,2023,485.2,,,10,SRC_TEA_2023
+TATE MODERN,泰特现代美术馆,英国,2023,474.2,,,11,SRC_TEA_2023
+NATIONAL MUSEUM OF NATURAL HISTORY,美国国家自然史博物馆,美国,2023,440.0,,,12,SRC_TEA_2023
+HUNAN MUSEUM,湖南博物院,中国,2023,439.8,,,13,SRC_TEA_2023
+HUBEI PROVINCIAL MUSEUM,湖北省博物馆,中国,2023,430.0,,,14,SRC_TEA_2023
+NATIONAL MUSEUM OF KOREA,韩国国立中央博物馆,韩国,2023,418.0,,,15,SRC_TEA_2023
+GUANGDONG PROVINCE MUSEUM,广东省博物馆,中国,2023,400.0,,,16,SRC_TEA_2023
+MUSEE D'ORSAY,奥赛博物馆,法国,2023,387.1,,,17,SRC_TEA_2023
+NATIONAL GALLERY OF ART,美国国家美术馆,美国,2023,383.0,,,18,SRC_TEA_2023
+MUSEO NACIONAL DEL PRADO,普拉多博物馆,西班牙,2023,333.8,,,19,SRC_TEA_2023
+STATE HERMITAGE,冬宫（艾尔米塔什）,俄罗斯,2023,327.4,,,20,SRC_TEA_2023

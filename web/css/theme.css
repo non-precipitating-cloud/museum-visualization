@@ -1,0 +1,592 @@
+/* ==========================================================================
+   主题令牌（Design Tokens）
+   《中国博物馆文化资源与公共文化服务的多维可视化分析》
+   ------------------------------------------------------------------------
+   配色说明（已经过程序化校验，见 docs/visual_design.md）：
+   · 分类色（区域身份）4 槽：东部蓝 / 中部青 / 西部金 / 东北红
+     —— 深色面 #101f30 上通过 亮度带 / 彩度下限 / 对比度 检查；
+        CVD 最差全对 ΔE 9.7，处于 8–12 底线区间，
+        因此全部散点图**必须同时**使用「省份直接标注 + 不同标记形状」作为二次编码。
+   · 顺序色阶（地图数量级）单色蓝 6 级 #184f95 → #cde2fb，单调、步距达标、低端 2.06:1。
+   · 文字一律使用文字令牌，绝不使用数据系列色。
+   ========================================================================== */
+
+:root {
+  /* ---- 版面 ---- */
+  --bg:            #0a1420;   /* 页面底色 */
+  --surface-1:     #101f30;   /* 图表面（面板） */
+  --surface-2:     #16283c;   /* 次级面板 / 悬浮 */
+  --surface-3:     #1b2f45;   /* 输入控件 */
+
+  /* ---- 墨色 ---- */
+  --ink-primary:   #e8f0f7;
+  --ink-secondary: #a6bccd;
+  --ink-muted:     #7590a5;
+
+  /* ---- 图表配件 ---- */
+  --grid:          #1c3145;   /* 网格细分线 */
+  --axis:          #2a4459;   /* 轴线 / 基线 */
+  --border:        rgba(255, 255, 255, 0.07);
+  --border-strong: rgba(255, 255, 255, 0.14);
+
+  /* ---- 交互强调色（仅用于控件状态，不用于数据编码） ---- */
+  --accent:        #3987e5;
+  --accent-soft:   rgba(57, 135, 229, 0.14);
+  --focus:         #6da7ec;
+
+  /* ---- 分类色（区域）---- */
+  --region-东部:   #3987e5;
+  --region-中部:   #199e70;
+  --region-西部:   #c98500;
+  --region-东北:   #e66767;
+
+  /* ---- 顺序色阶（地图：数量级编码，单色蓝）---- */
+  --seq-1: #184f95;
+  --seq-2: #256abf;
+  --seq-3: #3987e5;
+  --seq-4: #6da7ec;
+  --seq-5: #9ec5f4;
+  --seq-6: #cde2fb;
+  --no-data: #21323f;   /* "暂无数据" 专用中性填充，刻意脱离蓝色阶 */
+
+  /* ---- 字体 ---- */
+  --font: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB",
+          system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-num: "DIN Alternate", "Bahnschrift", "Segoe UI", var(--font);
+
+  /* ---- 尺度 ---- */
+  --radius:   6px;
+  --gap:      12px;
+  --pad:      16px;
+  --hairline: 1px;
+}
+
+/* ==========================================================================
+   基础
+   ========================================================================== */
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--ink-primary);
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 背景：极淡的径向光晕，提供纵深但不喧宾夺主 */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(1100px 620px at 50% -12%, rgba(57, 135, 229, 0.10), transparent 70%),
+    radial-gradient(760px 420px at 88% 108%, rgba(201, 133, 0, 0.06), transparent 72%);
+}
+
+a { color: var(--accent); text-decoration: none; }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: #24405a; border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover { background: #315madd; background: #315a7a; }
+
+/* ==========================================================================
+   1920×1080 舞台：等比缩放适配任意屏幕
+   ========================================================================== */
+#stage-wrap {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+}
+
+#stage {
+  width: 1920px;
+  height: 1080px;
+  transform-origin: center center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 13px 16px 13px;
+  gap: 10px;
+}
+
+/* ==========================================================================
+   页头
+   ========================================================================== */
+.app-header {
+  /* 三列网格而不是 space-between：页头的右侧角标已移除，只剩「标题 + 导航」
+     两个子元素，用 space-between 会把导航推到最右、和标题离得过远。
+     1fr auto 1fr 让导航真正居中（第三列留空占位），且 ::after 是绝对定位，
+     不会挤进网格。 */
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 20px;
+  flex: 0 0 auto;
+  padding-bottom: 7px;
+  border-bottom: var(--hairline) solid var(--border);
+  position: relative;
+}
+.main-nav { justify-self: center; }
+
+.app-header::after {
+  /* 细线装饰：从标题下方延伸，克制 */
+  content: "";
+  position: absolute;
+  left: 0; bottom: -1px;
+  width: 220px; height: 2px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+}
+
+.title-block { display: flex; flex-direction: column; gap: 2px; }
+
+.app-title {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  margin: 0;
+  line-height: 1.2;
+  /* 网格列默认可以压到「min-content」= 最长词，标题因此会折行。
+     设为 nowrap 后 min-content 就是整行宽度，网格不会再把它挤断。 */
+  white-space: nowrap;
+  background: linear-gradient(92deg, #ffffff 10%, #bcd8ee 62%, #8fb4d0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.app-subtitle {
+  font-size: 12px;
+  color: var(--ink-muted);
+  letter-spacing: 1px;
+  margin: 1px 0 0;
+}
+
+/* ---- 主导航 ---- */
+.main-nav { display: flex; gap: 6px; align-items: center; }
+
+.nav-link {
+  padding: 7px 15px;
+  border-radius: var(--radius);
+  border: var(--hairline) solid transparent;
+  color: var(--ink-secondary);
+  font-size: 13.5px;
+  letter-spacing: .4px;
+  cursor: pointer;
+  transition: background .16s, color .16s, border-color .16s;
+  white-space: nowrap;
+}
+.nav-link:hover { background: var(--surface-2); color: var(--ink-primary); }
+.nav-link.active {
+  background: var(--accent-soft);
+  border-color: rgba(57, 135, 229, 0.45);
+  color: #cfe4fa;
+  font-weight: 600;
+}
+
+/* ---- 页头右侧元信息 ---- */
+/* 页头的「数据年份 / 当前范围」角标已移除（各面板改为自述口径与年份），
+   对应的 .header-meta / .badge 样式一并删除，避免留下无人引用的死代码。 */
+
+/* ==========================================================================
+   面板
+   ========================================================================== */
+.panel {
+  position: relative;
+  background: linear-gradient(180deg, rgba(22, 40, 60, 0.72), rgba(16, 31, 48, 0.72));
+  border: var(--hairline) solid var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 9px 13px 8px;
+  border-bottom: var(--hairline) solid var(--border);
+  flex: 0 0 auto;
+}
+
+.panel-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink-primary);
+  letter-spacing: .6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+.panel-title::before {
+  content: "";
+  width: 3px; height: 13px;
+  border-radius: 2px;
+  background: var(--accent);
+  flex: 0 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   主次层级：一主多辅
+   只靠尺寸区分主次还不够——六个面板的标题字号一样时，视线仍会平扫过去。
+   这里再叠一层视觉语言：主视觉的标题更大、强调条更高并带辉光；辅助面板的
+   标题收小一档、颜色压低一级。两处差异都很轻微，但合起来能立刻划出主从。
+   -------------------------------------------------------------------------- */
+.panel.primary .panel-title { font-size: 16px; letter-spacing: .8px; }
+.panel.primary .panel-title::before {
+  height: 17px;
+  box-shadow: 0 0 10px rgba(57, 135, 229, .8);
+}
+.panel.primary > .panel-head { padding-bottom: 9px; }
+
+.panel:not(.primary) .panel-title {
+  font-size: 13px;
+  color: var(--ink-secondary);
+}
+.panel:not(.primary) .panel-title::before { height: 11px; opacity: .75; }
+
+.panel-question {
+  font-size: 11.5px;
+  color: var(--ink-muted);
+  font-weight: 400;
+  letter-spacing: .2px;
+}
+
+.panel-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  position: relative;
+  padding: 6px 8px 8px;
+}
+.panel-body.flush { padding: 0; }
+
+.chart { width: 100%; height: 100%; }
+
+/* ==========================================================================
+   KPI 数字块
+   ========================================================================== */
+/* KPI 条：紧凑单行（名称与数值同排），把纵向空间让给图表 */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--gap);
+  flex: 0 0 auto;
+}
+
+.kpi {
+  position: relative;
+  background: linear-gradient(180deg, rgba(22, 40, 60, 0.62), rgba(16, 31, 48, 0.62));
+  border: var(--hairline) solid var(--border);
+  border-radius: var(--radius);
+  /* 压扁一点：KPI 条是「背景信息」，纵向省下的空间全部让给地图主视觉 */
+  padding: 5px 12px 4px;
+  overflow: hidden;
+}
+
+/* 左侧强调细条 —— 唯一的高饱和装饰，用于建立主次 */
+.kpi::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--kpi-accent, var(--accent));
+  opacity: .85;
+}
+
+.kpi-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.kpi-label {
+  font-size: 12px;
+  color: var(--ink-secondary);
+  letter-spacing: .5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.kpi-value {
+  font-family: var(--font-num);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: .3px;
+  color: var(--ink-primary);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.kpi-value .unit {
+  font-size: 11.5px;
+  font-weight: 400;
+  color: var(--ink-muted);
+  margin-left: 4px;
+  letter-spacing: .3px;
+}
+
+.kpi-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 1px;
+  font-size: 10.5px;
+  color: var(--ink-muted);
+}
+
+/* 同比：涨/跌使用文字+箭头，不依赖颜色单独承载信息 */
+.kpi-delta { display: inline-flex; align-items: center; gap: 3px; font-variant-numeric: tabular-nums; }
+.kpi-delta.up   { color: #4fb477; }
+.kpi-delta.down { color: #e08b8b; }
+.kpi-delta.flat { color: var(--ink-muted); }
+
+.kpi-nodata {
+  font-size: 20px;
+  color: var(--ink-muted);
+  font-weight: 500;
+  letter-spacing: 1px;
+  padding: 7px 0 6px;
+}
+
+/* ==========================================================================
+   控件：Tab 切换 / 下拉 / 图例筛选 / 按钮
+   ========================================================================== */
+.controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+.tabs {
+  display: inline-flex;
+  gap: 2px;
+  padding: 2px;
+  background: var(--surface-1);
+  border: var(--hairline) solid var(--border);
+  border-radius: var(--radius);
+}
+
+.tab {
+  padding: 4px 11px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--ink-secondary);
+  font-family: var(--font);
+  font-size: 12.5px;
+  cursor: pointer;
+  transition: background .15s, color .15s;
+  white-space: nowrap;
+}
+.tab:hover { background: var(--surface-2); color: var(--ink-primary); }
+.tab.active {
+  background: var(--accent-soft);
+  color: #cfe4fa;
+  font-weight: 600;
+  box-shadow: inset 0 0 0 1px rgba(57, 135, 229, 0.4);
+}
+
+select.control-select {
+  padding: 4px 8px;
+  border-radius: var(--radius);
+  background: var(--surface-1);
+  border: var(--hairline) solid var(--border-strong);
+  color: var(--ink-primary);
+  font-family: var(--font);
+  font-size: 12px;
+  cursor: pointer;
+  outline: none;
+  max-width: 152px;
+}
+select.control-select:focus { border-color: var(--focus); }
+select.control-select option { background: #16283c; color: var(--ink-primary); }
+
+/* 图例筛选芯片（可点击开/关） */
+.legend-chips { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px 3px 8px;
+  border-radius: 999px;
+  border: var(--hairline) solid var(--border-strong);
+  background: var(--surface-1);
+  color: var(--ink-secondary);
+  font-size: 12px;
+  cursor: pointer;
+  user-select: none;
+  transition: opacity .15s, border-color .15s, background .15s;
+}
+.chip:hover { border-color: var(--focus); color: var(--ink-primary); }
+.chip .swatch {
+  width: 10px; height: 10px; border-radius: 2px; flex: 0 0 auto;
+  /* 形状是颜色之外的第二个识别通道（CVD 底线区间要求），
+     因此图例色块必须与散点标记同形，而不是一律画方块。
+     sym-* 由 core.js 的 REGION_SYMBOL 映射：circle / triangle / diamond / rect */
+}
+.chip .swatch.sym-circle   { border-radius: 50%; }
+.chip .swatch.sym-triangle { clip-path: polygon(50% 4%, 100% 100%, 0% 100%); }
+.chip .swatch.sym-diamond  { clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
+.chip .swatch.sym-rect     { border-radius: 1.5px; }
+.chip.off { opacity: .42; }
+.chip.off .swatch { background: var(--ink-muted) !important; }
+
+/* 幽灵按钮 */
+.ghost-btn {
+  padding: 4px 11px;
+  border-radius: var(--radius);
+  border: var(--hairline) solid var(--border-strong);
+  background: transparent;
+  color: var(--ink-secondary);
+  font-family: var(--font);
+  font-size: 12px;
+  cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.ghost-btn:hover { background: var(--surface-2); color: var(--ink-primary); border-color: var(--focus); }
+.ghost-btn.active { background: var(--accent-soft); color: #cfe4fa; border-color: rgba(57, 135, 229, .45); }
+
+/* ==========================================================================
+   次级文字 / 注释
+   ========================================================================== */
+.note {
+  font-size: 11.5px;
+  color: var(--ink-muted);
+  line-height: 1.55;
+  letter-spacing: .15px;
+}
+.note strong { color: var(--ink-secondary); font-weight: 600; }
+
+.disclaimer {
+  border-left: 2px solid var(--axis);
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 0 4px 4px 0;
+}
+
+/* 数据洞察块 —— 数值由程序计算后填入，非人工撰写 */
+.insight {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 2px 4px;
+}
+.insight-item {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  font-size: 12.2px;
+  line-height: 1.55;
+  color: var(--ink-secondary);
+}
+.insight-item .marker {
+  flex: 0 0 auto;
+  margin-top: 6px;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: .8;
+}
+.insight-item b { color: var(--ink-primary); font-weight: 600; font-variant-numeric: tabular-nums; }
+
+/* 空状态：缺测统一文案 */
+.empty-state {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  color: var(--ink-muted);
+  font-size: 13px;
+  letter-spacing: .5px;
+}
+
+/* 加载 */
+.loading {
+  position: fixed; inset: 0;
+  display: grid; place-items: center;
+  background: var(--bg);
+  color: var(--ink-secondary);
+  font-size: 14px;
+  letter-spacing: 1px;
+  z-index: 999;
+}
+
+/* ==========================================================================
+   内页（辅助分析页）—— 滚动式布局
+   ========================================================================== */
+body.doc-page { overflow: auto; }
+body.doc-page .page {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 26px 28px 60px;
+}
+body.doc-page .doc-head {
+  border-bottom: var(--hairline) solid var(--border);
+  padding-bottom: 16px;
+  margin-bottom: 22px;
+}
+body.doc-page h1.doc-title {
+  font-size: 25px; margin: 0 0 6px; letter-spacing: 1.5px;
+}
+body.doc-page .doc-sub { color: var(--ink-muted); font-size: 13px; margin: 0; }
+body.doc-page .card {
+  background: linear-gradient(180deg, rgba(22,40,60,.6), rgba(16,31,48,.6));
+  border: var(--hairline) solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  margin-bottom: 16px;
+}
+body.doc-page .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+/* 地图 + 说明文字两栏。地图保持真实宽高比后宽度有限，把富余的横向空间
+   交给说明文字，避免卡片右半边留白。 */
+body.doc-page .map-2col {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+body.doc-page .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+body.doc-page .chart-box { height: 380px; }
+body.doc-page h2.sec {
+  font-size: 16px; margin: 26px 0 12px; letter-spacing: 1px;
+  padding-left: 10px; border-left: 3px solid var(--accent);
+}
+body.doc-page table.data-table {
+  width: 100%; border-collapse: collapse; font-size: 12.5px;
+}
+body.doc-page table.data-table th,
+body.doc-page table.data-table td {
+  padding: 7px 10px; text-align: right;
+  border-bottom: var(--hairline) solid var(--border);
+}
+body.doc-page table.data-table th {
+  color: var(--ink-secondary); font-weight: 600;
+  position: sticky; top: 0; background: #14263a;
+}
+body.doc-page table.data-table td:first-child,
+body.doc-page table.data-table th:first-child { text-align: left; }
+body.doc-page table.data-table tbody tr:hover { background: rgba(255,255,255,.03); }
+body.doc-page .table-wrap { max-height: 520px; overflow: auto; border-radius: var(--radius); }
+/* 表格上方的小标题：一张卡片里放多张表时用来标明各自的口径 */
+body.doc-page .tbl-cap {
+  margin: 0 0 8px; font-size: 13px; font-weight: 600; color: var(--ink-secondary);
+  display: flex; align-items: center; gap: 7px;
+}
+body.doc-page .tbl-cap::before {
+  content: ""; width: 3px; height: 12px; border-radius: 2px; background: var(--accent);
+}

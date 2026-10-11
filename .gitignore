@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# 数据处理中间产物（可重新生成）
+data/clean/*.tmp
+
+# 抓取的来源页面留证缓存（体积大，可重新下载）
+data/raw/_cache/
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# 测试用 mock 数据不参与版本控制之外的处理，但需保留在仓库中以便说明
+# （tests/fixtures 保留，不忽略）

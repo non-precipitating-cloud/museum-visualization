@@ -1,0 +1,116 @@
+[
+  {
+    "file": "national_registered_museums.csv",
+    "action": "删除完全重复记录",
+    "detail": "整行内容完全相同",
+    "count": 0
+  },
+  {
+    "file": "national_registered_museums.csv",
+    "action": "清洗后记录数",
+    "detail": "原始 10 条",
+    "count": 10
+  },
+  {
+    "file": "national_relief_institutions.csv",
+    "action": "删除完全重复记录",
+    "detail": "整行内容完全相同",
+    "count": 0
+  },
+  {
+    "file": "national_relief_institutions.csv",
+    "action": "清洗后记录数",
+    "detail": "原始 12 条",
+    "count": 12
+  },
+  {
+    "file": "national_movable_relics_census.csv",
+    "action": "删除完全重复记录",
+    "detail": "整行内容完全相同",
+    "count": 0
+  },
+  {
+    "file": "national_movable_relics_census.csv",
+    "action": "标准化省份名称",
+    "detail": "`area` 统一为简称",
+    "count": 0
+  },
+  {
+    "file": "national_movable_relics_census.csv",
+    "action": "清洗后记录数",
+    "detail": "原始 18 条",
+    "count": 18
+  },
+  {
+    "file": "province_population.csv",
+    "action": "删除完全重复记录",
+    "detail": "整行内容完全相同",
+    "count": 0
+  },
+  {
+    "file": "province_population.csv",
+    "action": "标准化省份名称",
+    "detail": "`province` 统一为简称",
+    "count": 0
+  },
+  {
+    "file": "province_population.csv",
+    "action": "清洗后记录数",
+    "detail": "原始 93 条",
+    "count": 93
+  },
+  {
+    "file": "province_museums.csv",
+    "action": "删除完全重复记录",
+    "detail": "整行内容完全相同",
+    "count": 0
+  },
+  {
+    "file": "province_museums.csv",
+    "action": "标准化省份名称",
+    "detail": "`province` 统一为简称",
+    "count": 0
+  },
+  {
+    "file": "province_museums.csv",
+    "action": "清洗后记录数",
+    "detail": "原始 93 条",
+    "count": 93
+  },
+  {
+    "file": "country_museums.csv",
+    "action": "删除完全重复记录",
+    "detail": "整行内容完全相同",
+    "count": 0
+  },
+  {
+    "file": "country_museums.csv",
+    "action": "清洗后记录数",
+    "detail": "原始 18 条",
+    "count": 18
+  },
+  {
+    "file": "museum_cases.csv",
+    "action": "删除完全重复记录",
+    "detail": "整行内容完全相同",
+    "count": 0
+  },
+  {
+    "file": "museum_cases.csv",
+    "action": "清洗后记录数",
+    "detail": "原始 20 条",
+    "count": 20
+  },
+  {
+    "file": "museum_cases_official.csv",
+    "action": "删除完全重复记录",
+    "detail": "整行内容完全相同",
+    "count": 0
+  },
+  {
+    "file": "museum_cases_official.csv",
+    "action": "清洗后记录数",
+    "detail": "原始 16 条",
+    "count": 16
+  }
+]

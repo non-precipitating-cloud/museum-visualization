@@ -1,0 +1,33 @@
+chart_id,chart_name,page,dataset_id,fields_used,filter_condition,calculation,source,research_question
+KPI_01,备案博物馆数量,首页 KPI,CN_MUSEUM_YEARLY_REGISTERED_01,registered_museums,caliber=NCHA_REGISTERED 且取最新年份,,国家文物局,中国博物馆发展到了什么规模？
+KPI_02,博物馆文物藏品,首页 KPI,CN_MUSEUM_YEARLY_MCT_02,collections_museum_wan,caliber=MCT_MUSEUM 且 collections_museum_wan 非空取最新年份,,文化和旅游部,中国博物馆发展到了什么规模？
+KPI_03,珍贵文物,首页 KPI,CN_MOVABLE_RELIC_CENSUS_04,precious_relics,scope=national 且 metric=precious_relics,单位由件换算为万件,第一次全国可移动文物普查,馆藏资源的价值结构如何？
+KPI_04,博物馆参观人次,首页 KPI,CN_MUSEUM_YEARLY_REGISTERED_01,visitors_100m,caliber=NCHA_REGISTERED 且取最新年份,,国家文物局,资源是否转化为公共文化服务？
+KPI_05,举办陈列展览,首页 KPI,CN_MUSEUM_YEARLY_REGISTERED_01,exhibitions_10k,caliber=NCHA_REGISTERED 且值非空取最新年份,,国家文物局,公共文化服务的供给能力如何？
+CHART_01,全国博物馆数量趋势（备案口径）,发展趋势,CN_MUSEUM_YEARLY_REGISTERED_01,registered_museums,caliber=NCHA_REGISTERED,,国家文物局,中国博物馆发展到了什么规模？
+CHART_02,全国博物馆数量趋势（公报口径）,发展趋势,CN_MUSEUM_YEARLY_MCT_02,museums_mct,caliber=MCT_MUSEUM 且值非空,,文化和旅游部,两套口径下的规模差异有多大？
+CHART_03,全国馆藏文物趋势（博物馆口径）,发展趋势,CN_MUSEUM_YEARLY_MCT_02,collections_museum_wan,caliber=MCT_MUSEUM 且值非空,,文化和旅游部,馆藏资源的积累速度如何？
+CHART_04,全国馆藏文物趋势（文物机构口径）,发展趋势,CN_MUSEUM_YEARLY_MCT_02,collections_all_wan,caliber=MCT_MUSEUM,,文化和旅游部,更大口径下的馆藏规模如何？
+CHART_05,全国参观人次趋势（备案口径）,发展趋势,CN_MUSEUM_YEARLY_REGISTERED_01,visitors_100m,caliber=NCHA_REGISTERED 且值非空,,国家文物局,公众参观规模如何变化？
+CHART_06,全国参观人次趋势（文物机构口径）,发展趋势,CN_MUSEUM_YEARLY_MCT_02,visitors_relic_wan,caliber=MCT_MUSEUM,,文化和旅游部,更大口径下的客流规模如何？
+CHART_07,全国陈列展览趋势,发展趋势,CN_MUSEUM_YEARLY_REGISTERED_01,exhibitions_10k,caliber=NCHA_REGISTERED 且值非空,,国家文物局,展览供给能力如何变化？
+CHART_08,中国博物馆数量地图,首页主视觉,CN_PROVINCE_YEAR_09,museum_count,year=最新年份,,国家统计局中国统计年鉴表23-28,博物馆资源主要分布在哪里？
+CHART_09,每百万人博物馆数量地图,空间分布,CN_PROVINCE_YEAR_09,museums_per_million_population,year=最新年份,museum_count/(population_wan/100),国家统计局,考虑人口后空间格局是否发生变化？
+CHART_10,各省博物馆数量排名,空间分布,CN_PROVINCE_YEAR_09,museum_count,year=最新年份,,国家统计局,哪些地区博物馆数量更多？
+CHART_11,各省参观人次排名,空间分布,CN_PROVINCE_YEAR_09,visitors_wan,year=最新年份,,国家统计局,哪些地区公众使用更活跃？
+CHART_12,每百万人博物馆数量排名,空间分布,CN_PROVINCE_YEAR_09,museums_per_million_population,year=最新年份,museum_count/(population_wan/100),国家统计局,人口标准化后的空间格局如何？
+CHART_13,每百万人参观人次排名,空间分布,CN_PROVINCE_YEAR_09,visitors_per_million_population,year=最新年份,visitors_wan/(population_wan/100),国家统计局,人口标准化后的服务强度如何？
+CHART_14,省级博物馆资源结构四象限,首页核心,CN_PROVINCE_YEAR_09,"museum_count, visitors_wan, museums_per_million_population, average_visitors_per_museum",year=最新年份且两轴字段均非空,Pearson 相关系数前端实时计算,国家统计局,馆藏规模与人口标准化水平之间是什么关系？
+CHART_15,各省馆藏数量排名,馆藏与价值,CN_PROVINCE_YEAR_09,collection_count,year=最新年份,,国家统计局,哪些地区馆藏资源规模更大？
+CHART_16,平均每家博物馆馆藏,馆藏与价值,CN_PROVINCE_YEAR_09,average_collections_per_museum,year=最新年份,collection_count/museum_count,国家统计局,馆藏集中度如何？
+CHART_17,全国可移动文物等级结构,馆藏与价值,CN_MOVABLE_RELIC_CENSUS_04,"fine_relics_grade1, fine_relics_grade2, fine_relics_grade3",scope=national,,第一次全国可移动文物普查,馆藏资源的价值结构如何？
+CHART_18,可移动文物空间集聚,馆藏与价值,CN_MOVABLE_RELIC_CENSUS_04,movable_relics_total,scope=province 且 metric=movable_relics_total；其余省份合计=全国总量-五省之和,占比=分省/全国总量,第一次全国可移动文物普查,文物资源在省际之间如何分布？
+CHART_19,各省平均每家博物馆参观人次,公共文化服务,CN_PROVINCE_YEAR_09,average_visitors_per_museum,year=最新年份,visitors_wan/museum_count,国家统计局,每家博物馆平均服务多少观众？
+CHART_20,各省平均每个展览参观人次,公共文化服务,CN_PROVINCE_YEAR_09,visitors_per_exhibition,year=最新年份,visitors_wan/exhibition_count,国家统计局,展览的客流转化如何？
+CHART_21,馆藏规模 × 参观人次散点,公共文化服务,CN_PROVINCE_YEAR_09,"collection_count, visitors_wan",year=最新年份且两字段均非空,Pearson 相关系数前端实时计算,国家统计局,馆藏越多的地区参观人次是否越多？
+CHART_22,展览供给 × 参观人次散点,公共文化服务,CN_PROVINCE_YEAR_09,"exhibition_count, visitors_wan",year=最新年份且两字段均非空,Pearson 相关系数前端实时计算,国家统计局,展览数量与参观人次之间存在怎样的关系？
+CHART_23,世界主要国家博物馆数量（UNESCO口径）,国际比较,INTL_COUNTRY_MUSEUMS_06,museum_count,caliber_group=B,,UNESCO 2021 报告,各国博物馆规模如何？
+CHART_24,各国自报官方口径对比,国际比较,INTL_COUNTRY_MUSEUMS_06,museum_count,caliber_group=A,,各国官方统计,口径差异有多大？
+CHART_25,每百万人博物馆数量（国际）,国际比较,INTL_COUNTRY_11,museums_per_million,两字段均非空,museum_count/population_million,UNESCO + 世界银行,消除人口规模差异后如何比较？
+CHART_26,全球代表性博物馆参观人次（TEA/AECOM 2023）,国际比较,INTL_MUSEUM_CASES_07,annual_visitors_wan,year=2023,NULL(同一机构同一年度直接比较),TEA/AECOM Theme Index 2023,世界代表性博物馆的参观规模如何？
+CHART_27,代表性博物馆参观人次（各馆官方口径）,国际比较,MUSEUM_CASES_OFFICIAL_08,annual_visitors_wan,annual_visitors_wan 非空,NULL(口径不一致，仅作量级观察),各馆官方网站与年报,中国博物馆放在世界代表性博物馆中处于什么位置？

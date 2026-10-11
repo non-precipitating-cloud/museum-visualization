@@ -1,0 +1,60 @@
+source_id,source_organization,source_title,source_url,source_type,source_level,original_year,geographic_scope,retrieved_date,note
+SRC_NCHA_2015,国家文物局（央广网报道）,我国超八成博物馆免费开放 注册博物馆达4692家（2015年底数据）,http://m.cnr.cn/chanjing/edu/20160519/t20160519_522179346.html,媒体转载官方发布,二级,2015,China,2026-10-08,转载国家文物局2016年国际博物馆日发布数据
+SRC_NCHA_2016,国家文物局（中国青年报报道）,国家文物局：全国博物馆达4873座（2016年度数据）,http://zqb.cyol.com/html/2017-05/19/nw.D110000zgqnb_20170519_4-02.htm,媒体转载官方发布,二级,2016,China,2026-10-08,转载国家文物局2017年国际博物馆日发布数据
+SRC_NCHA_2017,国家文物局（两会部长通道，澎湃新闻报道）,国家文物局局长：到2017年年底全国备案博物馆达5136家,https://m.thepaper.cn/newsDetail_forward_3068560,媒体转载官方发布,二级,2017,China,2026-10-08,国家文物局局长刘玉珠2019年3月两会表述；另有报道将该数作为2018年截至目前，年份存在两说，已在数据说明中标注
+SRC_NCHA_2018,国家文物局（中国新闻网/新华社报道）,2018年我国新增1亿多人次打卡博物馆,https://www.chinanews.com.cn/cul/2019/05-18/8840524.shtml,媒体转载官方发布,二级,2018,China,2026-10-08,截至2018年底登记备案博物馆5354家
+SRC_NCHA_2019,国家文物局（中国新闻网报道）,我国博物馆总数达5535家 每2天新增一家,https://www.chinanews.com/cul/2020/05-18/9187402.shtml,媒体转载官方发布,二级,2019,China,2026-10-08,截至2019年底备案博物馆5535家；非国有1710家
+SRC_NCHA_2020,国家文物局（中国新闻网报道）,中国博物馆总量跃居全球前五位,https://www.chinanews.com/cul/2021/05-18/9480116.shtml,媒体转载官方发布,二级,2020,China,2026-10-08,截至2020年底备案博物馆5788家
+SRC_NCHA_2021,国家文物局（央视网报道）,第46个国际博物馆日：我国共备案博物馆6183家,https://news.cctv.com/2022/05/18/ARTIz6IxyzJ0JxysbAxlMTUj220518.shtml,媒体转载官方发布,二级,2021,China,2026-10-08,2021年新增备案博物馆395家
+SRC_NCHA_2022,国家文物局（新华社/新华网）,新华社权威快报：我国博物馆总数达到6565家,http://www.news.cn/politics/2023-05/18/c_1129624419.htm,官方媒体发布,一级,2022,China,2026-10-08,2022年新增备案博物馆382家
+SRC_NCHA_2023,国家文物局（中国政府网）,2023年我国博物馆接待观众12.9亿人次 创历史新高,https://app.www.gov.cn/govdata/gov/202405/19/515151/article.html,官方政府网站,一级,2023,China,2026-10-08,全年新增备案博物馆268家，备案博物馆达6833家；展览4万余个、教育活动38万余场
+SRC_NCHA_2024,国家文物局（中国政府网图表）,图表：2024年全国博物馆接待观众14.9亿人次,https://www.gov.cn/zhengce/jiedu/tujie/202505/content_7024142.htm,官方政府网站,一级,2024,China,2026-10-08,截至2024年底备案博物馆7046家，较上年增加213家；免费开放率91.46%
+SRC_MCT_2012,文化和旅游部,我国博物馆行业发展迅速（2012年数据）,https://www.mct.gov.cn/preview/special/xy20d/9672/202210/t20221013_936436.htm,官方部委网站,一级,2012,China,2026-10-08,2012年全国博物馆机构数3069个、藏品2318万件/套
+SRC_MCT_2013,文化部,2013年文化发展统计公报（PDF）,https://www.mct.gov.cn/whzx/bnsj/cws/201405/P020171201580031493611.pdf,官方统计公报,一级,2013,China,2026-10-08,文物机构7740个、博物馆3476个；含一/二/三级文物分项（文物机构口径）
+SRC_MCT_2014,文化部,2014年文化发展统计公报（PDF）,https://zwgk.mct.gov.cn/zfxxgkml/tjxx/202012/W020161230856808049470.pdf,官方统计公报,一级,2014,China,2026-10-08,文物机构8418个、博物馆3658个；含一/二/三级文物分项（文物机构口径）
+SRC_MCT_2016,文化部（新浪收藏转载）,2016年文化发展统计公报,http://collection.sina.com.cn/wjs/2017-05-18/doc-ifyfkqks4251453.shtml,媒体转载官方发布,二级,2016,China,2026-10-08,文物机构8954个、博物馆4109个；含一/二/三级文物分项（文物机构口径）
+SRC_MCT_2017,文化部（中国经济网转载）,2017年文化发展统计公报,http://www.ce.cn/culture/gd/201806/01/t20180601_29311788.shtml,媒体转载官方发布,二级,2017,China,2026-10-08,文物机构9931个、博物馆4721个
+SRC_MCT_2018,文化和旅游部,2018年文化和旅游发展统计公报,https://zwgk.mct.gov.cn/zfxxgkml/tjxx/202012/t20201204_906482.html,官方统计公报,一级,2018,China,2026-10-08,文物机构10160个、博物馆4918个
+SRC_MCT_2019,文化和旅游部,2019年文化和旅游发展统计公报,https://zwgk.mct.gov.cn/zfxxgkml/tjxx/202012/t20201204_906491.html,官方统计公报,一级,2019,China,2026-10-08,文物机构10562个、博物馆5132个
+SRC_MCT_2020,文化和旅游部（陕西省文化和旅游厅转载）,2020年文化和旅游发展统计公报,https://whhlyt.shaanxi.gov.cn/zfxxgk/fdzdgknr/tjxx/202107/t20210706_2578336.html,省级官方站点转载,二级,2020,China,2026-10-08,文物机构11314个、博物馆5452个
+SRC_MCT_2021,文化和旅游部,2021年文化和旅游发展统计公报,https://www.gov.cn/guoqing/2023-03/17/content_5747149.htm,官方政府网站,一级,2021,China,2026-10-08,文物机构10545个、博物馆5772个
+SRC_MCT_2022,文化和旅游部,2022年文化和旅游发展统计公报,https://www.gov.cn/lianbo/bumen/202307/content_6891772.htm,官方政府网站,一级,2022,China,2026-10-08,文物机构11340个；文物系统管理的国有博物馆3782个（口径自本年起变更）
+SRC_MCT_2023,文化和旅游部,2023年文化和旅游发展统计公报,https://zwgk.mct.gov.cn/zfxxgkml/tjxx/202408/t20240830_954981.html,官方统计公报,一级,2023,China,2026-10-08,登记备案博物馆6833个；文物机构藏品5017.2万件/套；接待观众140266万人次
+SRC_MCT_2024,文化和旅游部,2024年文化和旅游发展统计公报,https://www.gov.cn/lianbo/bumen/202505/content_7044342.htm,官方政府网站,一级,2024,China,2026-10-08,文物机构藏品5082.8万件/套，其中国有博物馆4233.3万件/套；接待观众15.5亿人次
+SRC_CSY_2023_C2328,国家统计局,中国统计年鉴2023 表23-28 分地区博物馆基本情况（2022年）,https://www.stats.gov.cn/sj/ndsj/2023/html/C23-28.jpg,官方统计年鉴,一级,2022,China,2026-10-08,原文为JPG图片表格，逐格转录；合计：机构6091个、藏品46916129件/套、基本陈列展览31298个、参观57048万人次
+SRC_CSY_2022_C2328,国家统计局,中国统计年鉴2022 表23-28 分地区博物馆基本情况（2021年）,https://www.stats.gov.cn/sj/ndsj/2022/html/C23-28.jpg,官方统计年鉴,一级,2021,China,2026-10-08,合计：机构5772个、藏品46648282件/套、基本陈列展览31931个、参观74850万人次
+SRC_CSY_2021_C2328,国家统计局,中国统计年鉴2021 表23-28 分地区博物馆基本情况（2020年）,https://www.stats.gov.cn/sj/ndsj/2021/html/C23-28.jpg,官方统计年鉴,一级,2020,China,2026-10-08,合计：机构5452个、文物藏品43190898件/套、基本陈列展览27719个、参观52652万人次
+SRC_CSY_2023_C0205,国家统计局,中国统计年鉴2023 表2-5 分地区年末人口数,https://www.stats.gov.cn/sj/ndsj/2023/html/C02-05.jpg,官方统计年鉴,一级,2020-2022,China,2026-10-08,年末常住人口；全国合计2020=141212、2021=141260、2022=141175万人
+SRC_GD_MUSEUM_2022,广东省文化和旅游厅（南方网报道）,广东省2022年度博物馆事业发展报告,https://news.southcn.com/node_d85807e3d5/08228015e3.shtml,省级官方发布转载,二级,2022,广东,2026-10-08,原文：珍贵文物87042件/套，比上年增加789件/套。本项目分省珍贵文物仅有此一省可得
+SRC_CENSUS_2017,国家文物局（山东博物馆转载《第一次全国可移动文物普查数据公报》）,第一次全国可移动文物普查数据公报,https://www.sdmuseum.com/art/2017/4/11/art_270339_8343.html,官方公报转载,二级,2016,China,2026-10-08,统计时点2016-10-31；全国108154907件/套、珍贵文物3856268件(6.02%)、前五省市数据
+SRC_CENSUS_WORKREPORT,国家文物局（维基文库全文）,第一次全国可移动文物普查工作报告,https://zh.wikisource.org/zh/%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%85%A8%E5%9B%BD%E5%8F%AF%E7%A7%BB%E5%8A%A8%E6%96%87%E7%89%A9%E6%99%AE%E6%9F%A5%E5%B7%A5%E4%BD%9C%E6%8A%A5%E5%91%8A,官方文件全文,三级,2016,China,2026-10-08,珍贵文物分级：一级218911、二级551192、三级3086165件；与公报逐项相加吻合
+SRC_CENSUS_XINHUA,新华社,第一次全国可移动文物普查结果发布,https://www.news.cn/politics/2017-04/07/c_129527343.htm,官方媒体发布,一级,2016,China,2026-10-08,新发现新认定文物708.4149万件/套
+SRC_SX_WWJ_2021,山西省文物局,山西国有可移动文物322万件 珍贵文物59219件,https://wwj.shanxi.gov.cn/gzdt/szdt/202109/t20210908_1990669.shtml,省级文物局官网,二级,2016,山西,2026-10-08,普查口径；个别省份单独公布的数据，未形成全国统一序列
+SRC_UNESCO_2021,UNESCO,Report: Museums in the face of the COVID-19 pandemic（2021）,https://museosources.fr/wp-content/uploads/2021/12/RAPPORT-DEFINITIF-UNESCO-FR-Les-musees-dans-le-monde-face-a-la-pandemie-de-Covid-19.pdf,国际组织报告（第三方镜像）,一级,2019,Global,2026-10-08,含分国博物馆数量表（全球合计94418家）；报告明确指出各国计数执行方式不同、中国1030家明显偏低
+SRC_IMLS_US,美国博物馆与图书馆服务署 IMLS,Government Doubles Official Estimate: There Are 35000 Active Museums in the U.S.,https://www.imls.gov/news/government-doubles-official-estimate-there-are-35000-active-museums-us,官方机构发布,一级,2014,United States,2026-10-08,美国官方口径35144家，含植物园、动物园、水族馆、历史学会、科学中心、儿童博物馆等
+SRC_DE_IFM_2023,德国普鲁士文化遗产基金会（IfM 德国博物馆研究所数据）,Museen sind beliebt und wichtige wirtschaftliche Standortfaktoren,https://www.preussischer-kulturbesitz.de/pressemitteilung/artikel/2024/12/12/museen-sind-beliebt-und-wichtige-wirtschaftliche-standortfaktoren.html,官方机构发布,一级,2023,Germany,2026-10-08,IfM口径6782家（发放问卷数）；参观约1.06亿人次
+SRC_FR_MDF,法国文化部,Les musées de France,https://www.culture.gouv.fr/thematiques/musees/Les-musees-en-France/les-musees-de-france,官方部委网站,一级,2024,France,2026-10-08,musée de France为法定称号，共1220家
+SRC_KR_MCST,韩国文化体育观光部,Statistics（博物馆/美术馆）,https://www.mcst.go.kr/english/statistics/statistics.jsp,官方部委网站,一级,2024,South Korea,2026-10-08,博物馆916家、美术馆288家分列统计
+SRC_TEA_2023,TEA/AECOM,Theme Index and Museum Index 2023,https://aecom.com/wp-content/uploads/documents/reports/AECOM-Theme-Index-2023.pdf,行业权威报告,三级,2023,Global,2026-10-08,全球前20博物馆参观人次；2023年前20合计99763千人次，同比+65.9%，恢复至2019年94.6%
+SRC_WB_POP,世界银行,World Bank Open Data SP.POP.TOTL（总人口）,https://api.worldbank.org/v2/country/CHN;USA;GBR;FRA;DEU;JPN;KOR;ITA;RUS;ESP;CAN;IND;BRA/indicator/SP.POP.TOTL?date=2024&format=json,国际组织开放数据,一级,2024,Global,2026-10-08,2024年各国总人口，用于计算每百万人博物馆数量
+SRC_GEO_DATAV,阿里云 DataV 公开边界服务,中国省级行政区边界 GeoJSON (adcode 100000_full),https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json,公开地理数据服务,四级,2024,China,2026-10-08,仅用于地图底图；几何数据未做修改
+SRC_ECHARTS,Apache ECharts,ECharts 5.5.1 运行库,https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js,开源软件库,四级,2024,Global,2026-10-08,可视化渲染库（Apache-2.0）
+SRC_CNM_2024,中国国家博物馆,中国国家博物馆2024年度数据报告,https://www.chnmuseum.cn/shxg/zlxz/pdfdown/202503/t20250320_271313.shtml,博物馆官网,二级,2024,中国国家博物馆,2026-10-08,全年开放317天、接待观众6956830人次、同比+3%
+SRC_DPM_SITE,故宫博物院,故宫博物院简介,https://www.dpm.org.cn/about/about_view.html,博物馆官网,二级,2024,故宫博物院,2026-10-08,藏品1863404件；占地112万平方米
+SRC_DPM_VISITORS,新华社（舜网转载）,2024年故宫接待观众超1760万人次,http://news.e23.cn/guonei/2025-10-10/2025A1000084.html,官方媒体,一级,2024,故宫博物院,2026-10-08,原文：2024年接待观众超1760万人次
+SRC_SXHM_2024,陕西历史博物馆（陕西省地方志年度报告）,陕西历史博物馆2024年度报告,http://sxbb.gov.cn/site-sxdjgl/yearlyReport_view/271404,博物馆官方年度报告,二级,2024,陕西历史博物馆,2026-10-08,2024年累计接待观众495.33万人次（本馆345.76万+秦汉馆149.57万）
+SRC_HNM_2024,河南博物院,河南博物院2024年度报告,https://www.chnmus.net/ch/institution/annual/details.html?id=7300068856339369984,博物馆官网年报,二级,2024,河南博物院,2026-10-08,全年接待观众309.9万人次；院藏藏品24.9万多件/套
+SRC_SHM_2024,上海博物馆（新浪财经报道）,上海博物馆2024年接待观众657.86万人次,https://finance.sina.cn/2025-01-15/detail-ineezwyz7167573.d.html,媒体转载官方数据,三级,2024,上海博物馆,2026-10-08,人民广场馆与东馆合计657.86万人次
+SRC_SHM_SITE,上海博物馆,上海博物馆简介,https://www.shanghaimuseum.net/mu/frontend/pg/infomation/about,博物馆官网,二级,2024,上海博物馆,2026-10-08,馆藏文物102余万件，其中珍贵文物14.5余万件
+SRC_ZJM_2023,浙江省博物馆（钱江晚报/潮新闻）,浙江省博物馆2023年接待观众262.40万人次,http://qjwb.tidenews.com.cn/html/2024-10/01/content_4272221.htm,媒体转载官方数据,三级,2023,浙江省博物馆,2026-10-08,接待观众262.40万人次；馆藏文物十万余件
+SRC_HBM_2024,湖北省文化和旅游厅,湖北省博物馆2024年接待观众超过500万人次,https://wlt.hubei.gov.cn/bmdt/mtjj/202504/t20250406_5603996.shtml,省级政府网站,一级,2024,湖北省博物馆,2026-10-08,2024年接待观众超500万人次；馆藏文物24万余件（套）
+SRC_HNMU_2024,湖南博物院,湖南博物院2024年度报告,https://www.hnmuseum.com/zh-hant/node/10469,博物馆官网年报,二级,2024,湖南博物院,2026-10-08,2024年开放311天、接待观众490余万人次、院藏54万件(套)
+SRC_LNM_2024,辽宁省博物馆（北国网/辽宁日报）,辽宁省博物馆2024年观众达332万人,https://news.lnd.com.cn/system/2025/05/16/030513419.shtml,官方媒体,二级,2024,辽宁省博物馆,2026-10-08,观众从2015年48.3万人增至2024年332万人；馆藏近十二万件
+SRC_NJM,南京博物院（南京文旅网）,南京博物院馆情简介,http://m.njlyw.cn/website/web/ScenicDetail?m=173&c=XW&i=1282,官方机构网站,三级,2024,南京博物院,2026-10-08,藏品43万余件(套)；总建筑面积84800㎡；参观人次未获取到
+SRC_LOUVRE_2024,卢浮宫（官方新闻稿）,8.7 millions de visiteurs au Louvre en 2024,https://presse.louvre.fr/8-7-millions-de-visiteurs-au-louvre-en-2024/?lang=fr,博物馆官网,二级,2024,卢浮宫,2026-10-08,2024年接待870万观众；2023年为890万
+SRC_BM_2025,大英博物馆,Annual Report and Accounts 2024-25,https://www.britishmuseum.org/sites/default/files/2025-07/Annual_Report_and_Accounts_2024-25.pdf,博物馆官网年报,二级,2024,大英博物馆,2026-10-08,财年参观650万人次，为2015/16年度以来最高；藏品约800万件
+SRC_MET_FY2024,大都会艺术博物馆,Attendance Figures FY2024,https://www.metmuseum.org/press-releases/attendance-figures-fy2024-2024-news,博物馆官网新闻稿,二级,2024,大都会艺术博物馆,2026-10-08,FY2024两个馆址合计超过550万观众。**注意**：该官网对自动化访问有反爬（返回429/拦截），程序核验会失败；数值取自同一页面的互联网档案馆存档 https://web.archive.org/web/20250909221112id_/https://www.metmuseum.org/press-releases/attendance-figures-fy2024-2024-news
+SRC_VATICAN_2024,罗马市（Annuario 2025 文化统计）,Cultura Annuario 2025,https://www.comune.roma.it/web-resources/cms/documents/07_Cultura_Annuario_2025.pdf,市政官方统计,二级,2024,梵蒂冈博物馆,2026-10-08,2024年参观者6825436人，占该市文化场所观众18.5%
+SRC_NMK_2024,韩国国立中央博物馆,国立中央博物馆2024年度报告,https://www.museum.go.kr/afile/fileDownloadById/37236?siteCode=MUSEUM,博物馆官网年报,二级,2024,韩国国立中央博物馆,2026-10-08,合计观众1091万人（含所属地区馆）；藏品约258万件（中央馆44万+所属馆214万）
+SRC_TNM_FY2024,东京国立博物馆,东京国立博物馆令和6年度概要,https://www.nich.go.jp/wp-content/uploads/2025/06/gaiyo2025-j.pdf,博物馆官网年报,二级,2024,东京国立博物馆,2026-10-08,令和6年度本馆来馆者2563820人；藏品约12万件
+SRC_NPM_2025,台北故宫博物院,114年度总参观人数分项统计表,https://www.npm.gov.tw/NewFileAtt.ashx?lang=1&id=10057438,博物馆官网,二级,2025,台北故宫博物院,2026-10-08,民国114年度（2025）北部院区总参观2426842人次
