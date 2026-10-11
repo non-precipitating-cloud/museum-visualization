@@ -6,6 +6,32 @@
 
 ---
 
+## English Abstract
+
+**Multidimensional Visualization of China's Museum Cultural Resources and Public Cultural Services**
+
+A reproducible, end-to-end data visualization project built entirely on official Chinese public
+data: **collection → cleaning → processing → auditing → interactive front end**. It addresses five
+questions — resource scale, spatial distribution, cultural-value structure, public cultural
+service, and international comparison — and ships as one interactive dashboard plus five focused
+analysis pages.
+
+- **Data** — 59 hand-transcribed official sources (National Cultural Heritage Administration,
+  Ministry of Culture and Tourism, National Bureau of Statistics, UNESCO, and others). Every
+  source URL is visited by script and archived as evidence, so `raw → clean → processed` is fully
+  traceable.
+- **Principle** — *no fabricated data*. A metric with no reliable public source is **dropped**
+  rather than estimated; missing values stay `NULL` and render as "no data", never `0`.
+- **Stack** — Python (pandas / numpy) for the pipeline; static HTML / CSS / vanilla JS + ECharts
+  for the front end. No server and no build step: open `web/index.html` directly.
+- **Quality gates** — 69 pipeline self-checks (`python tests/test_pipeline.py`).
+
+🔗 **Live demo** — https://non-precipitating-cloud.github.io/museum-visualization/
+
+*Source code comments and documentation are written in Chinese.*
+
+---
+
 ## 目录
 
 - [一、项目简介](#一项目简介)
@@ -538,7 +564,9 @@ D:\museum-visualization
 ├── web                 前端（index.html + pages/ + css/ + js/ + assets/ + data/）
 ├── tests               数据管线自检
 ├── docs                数据来源 / 处理日志 / 质量报告 / 审计报告 / 设计
+├── index.html          仅用于 GitHub Pages 的跳转页（本地请直接开 web/index.html）
 ├── README.md
+├── .gitattributes      换行符与二进制文件规则
 └── requirements.txt
 ```
 
